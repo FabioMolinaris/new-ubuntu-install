@@ -28,13 +28,13 @@ sudo apt install ca-certificates curl gnupg lsb-release -y;
 sudo mkdir -p /etc/apt/keyrings;
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg;
 echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null;
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null;
 sudo apt update;
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y;
 wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.15.0-amd64.deb;
-sudo apt install ./docker-desktop-4.15.0-amd64.deb -y;
-rm ./docker-desktop-4.15.0-amd64.deb;
+sudo apt install ./docker-desktop*.deb -y;
+rm ./docker-desktop*.deb;
 sudo apt install -f -y;
 # install vmware
 wget https://download3.vmware.com/software/WKST-1700-LX/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle;
@@ -46,6 +46,8 @@ sudo apt install linux-headers-$(uname -r) gcc -y;
 sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y;
 sudo apt install flatpak -y;
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo;
+
+sudo apt remove thunderbird libreoffice* -y
 
 sudo flatpak install flathub com.spotify.Client -y;
 sudo flatpak install flathub org.telegram.desktop -y;
