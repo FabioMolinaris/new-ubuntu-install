@@ -58,3 +58,4 @@ sudo flatpak install flathub org.kde.kdenlive -y;
 sudo flatpak install flathub org.mozilla.Thunderbird -y;
 sudo flatpak install flathub io.github.mimbrero.WhatsAppDesktop -y;
 sudo flatpak install flathub tv.plex.PlexDesktop -y;
+sudo flatpak install flathub com.github.rajsolai.textsnatcher -y;
