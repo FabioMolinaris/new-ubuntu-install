@@ -2,6 +2,9 @@
 # update
 sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y;
 sudo ubuntu-drivers autoinstall;
+# install gpaste (crea scorciatoia per gpaste-client show-history)
+sudo apt install gnome-shell-extensions-gpaste
+sudo apt install gnome-shell-extension-prefs
 # install edge
 wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_100.0.1185.29-1_amd64.deb;
 sudo apt install ./microsoft-edge*.deb -y;
