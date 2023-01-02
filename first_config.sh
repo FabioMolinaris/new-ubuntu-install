@@ -64,3 +64,12 @@ sudo flatpak install flathub io.github.mimbrero.WhatsAppDesktop -y;
 sudo flatpak install flathub tv.plex.PlexDesktop -y;
 sudo flatpak install flathub com.github.rajsolai.textsnatcher -y;
 sudo flatpak install flathub org.gnome.gThumb -y;
+
+# restore keybind backup
+dconf reset -f '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/'
+dconf reset -f '/org/gnome/desktop/wm/keybindings/'
+dconf load '/org/gnome/desktop/wm/keybindings/' < gnome3-keybind-backup/keybindings.dconf
+dconf load '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' < gnome3-keybind-backup/custom-values.dconf
+dconf write '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings' "$(cat gnome3-keybind-backup/custom-keys.dconf)"
+
+exit 0
