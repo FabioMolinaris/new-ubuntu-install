@@ -56,7 +56,6 @@ rm ./packages-microsoft-prod.deb;
 sudo apt update;
 sudo apt install powershell -y;
 
-
 # flatpak
 sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y;
 sudo apt install flatpak -y;
@@ -72,16 +71,11 @@ sudo flatpak install flathub org.gimp.GIMP -y;
 sudo flatpak install flathub org.libreoffice.LibreOffice -y;
 sudo flatpak install flathub org.kde.kdenlive -y;
 sudo flatpak install flathub org.mozilla.Thunderbird -y;
-sudo flatpak install flathub io.github.mimbrero.WhatsAppDesktop -y;
+sudo flatpak install flathub com.github.eneshecan.WhatsAppForLinux -y;
 sudo flatpak install flathub tv.plex.PlexDesktop -y;
 sudo flatpak install flathub com.github.rajsolai.textsnatcher -y;
 sudo flatpak install flathub org.gnome.gThumb -y;
+sudo flatpak install com.github.IsmaelMartinez.teams_for_linux -y;
 
-# restore keybind backup
-set -e
-
-dconf reset -f '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/';
-dconf reset -f '/org/gnome/desktop/wm/keybindings/';
-dconf load '/org/gnome/desktop/wm/keybindings/' < ./keybind-backup/keybindings.dconf;
-dconf load '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' < ./keybind-backup/custom-values.dconf;
-dconf write '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings' "$(cat ./keybind-backup/custom-keys.dconf)";
+# restore dconf backup
+dconf load / < fabios-desktop;
