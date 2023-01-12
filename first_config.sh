@@ -2,6 +2,8 @@
 # update
 sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y;
 sudo ubuntu-drivers autoinstall;
+# Java Runtime Environment
+sudo apt install default-jre -y;
 # install gpaste (crea scorciatoia per gpaste-client show-history)
 sudo apt install gnome-shell-extension-prefs gnome-shell-extensions-gpaste -y;
 # install screenshot
@@ -45,13 +47,23 @@ wget https://download3.vmware.com/software/WKST-1700-LX/VMware-Workstation-Full-
 sudo sh ./VMware-Workstation-Full*.bundle;
 rm ./VMware-Workstation-Full*.bundle;
 sudo apt install linux-headers-$(uname -r) gcc -y;
+# install PowerShell
+sudo apt update;
+sudo apt install wget apt-transport-https software-properties-common -y;
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb;
+sudo dpkg -i packages-microsoft-prod.deb;
+rm ./packages-microsoft-prod.deb;
+sudo apt update;
+sudo apt install powershell -y;
+
 
 # flatpak
 sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y;
 sudo apt install flatpak -y;
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo;
 
-sudo apt remove thunderbird libreoffice* -y
+sudo apt remove thunderbird libreoffice* geary -y;
+sudo apt autoremove -y;
 
 sudo flatpak install flathub com.spotify.Client -y;
 sudo flatpak install flathub org.telegram.desktop -y;
@@ -66,10 +78,10 @@ sudo flatpak install flathub com.github.rajsolai.textsnatcher -y;
 sudo flatpak install flathub org.gnome.gThumb -y;
 
 # restore keybind backup
-dconf reset -f '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/'
-dconf reset -f '/org/gnome/desktop/wm/keybindings/'
-dconf load '/org/gnome/desktop/wm/keybindings/' < gnome3-keybind-backup/keybindings.dconf
-dconf load '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' < gnome3-keybind-backup/custom-values.dconf
-dconf write '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings' "$(cat gnome3-keybind-backup/custom-keys.dconf)"
+set -e
 
-exit 0
+dconf reset -f '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/';
+dconf reset -f '/org/gnome/desktop/wm/keybindings/';
+dconf load '/org/gnome/desktop/wm/keybindings/' < ./keybind-backup/keybindings.dconf;
+dconf load '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/' < ./keybind-backup/custom-values.dconf;
+dconf write '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings' "$(cat ./keybind-backup/custom-keys.dconf)";
