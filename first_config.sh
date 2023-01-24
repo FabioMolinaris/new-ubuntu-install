@@ -55,6 +55,12 @@ sudo dpkg -i packages-microsoft-prod.deb;
 rm ./packages-microsoft-prod.deb;
 sudo apt update;
 sudo apt install powershell -y;
+# teamviewer
+sudo apt update;
+wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb;
+sudo dpkg -i teamviewer_amd64.deb;
+rm ./teamviewer_amd64.deb;
+sudo apt install -f -y;
 
 # flatpak
 sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y;
