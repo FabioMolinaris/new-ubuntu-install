@@ -58,8 +58,8 @@ sudo apt install powershell -y;
 # teamviewer
 sudo apt update;
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb;
-sudo dpkg -i teamviewer_amd64.deb;
-rm ./teamviewer_amd64.deb;
+sudo dpkg -i teamviewer*.deb;
+rm ./teamviewer*.deb;
 sudo apt install -f -y;
 
 # flatpak
